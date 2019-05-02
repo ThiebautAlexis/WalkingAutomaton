@@ -56,6 +56,14 @@ public class Synapse
         Weight = NeuralMath.GetRandomValue(true);
         WeightDelta = 0; 
     }
+
+    public Synapse(Neuron _input, Neuron _output, float _weight)
+    {
+        InputNeuron = _input;
+        OutPutNeuron = _output;
+        Weight = _weight; 
+        WeightDelta = 0;
+    }
     #endregion
 
 }

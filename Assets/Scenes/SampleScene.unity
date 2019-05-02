@@ -1254,6 +1254,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1490360572}
+  - component: {fileID: 1490360573}
+  - component: {fileID: 1490360574}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1282,6 +1284,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 18.984001, y: -94.424, z: -1.442}
+--- !u!114 &1490360573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490360571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558d2568286b1d343b175e1da93a5804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bones:
+  - {fileID: 1771838492}
+  - {fileID: 378963706}
+  - {fileID: 1449709437}
+  Joints:
+  - {fileID: 819649502}
+  - {fileID: 10955683}
+  - {fileID: 722528377}
+  - {fileID: 955297632}
+  Muscles:
+  - {fileID: 252256196}
+  - {fileID: 395377671}
+  Brain: {fileID: 1490360574}
+--- !u!114 &1490360574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490360571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10dfbd76a52b1f6498715779a36d7a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 1490360573}
+  muscles:
+  - {fileID: 252256196}
+  - {fileID: 395377671}
+  neuralNetwork:
+    learnRate: 0.1
 --- !u!1 &1771838487
 GameObject:
   m_ObjectHideFlags: 0

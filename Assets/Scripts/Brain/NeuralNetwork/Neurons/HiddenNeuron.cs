@@ -38,6 +38,31 @@ public class HiddenNeuron : Neuron
             InputSynapses.Add(_s);
         }
     }
+
+    public HiddenNeuron(List<InputNeuron> _previousLayer, float[] _weights)
+    {
+        Bias = 0;
+        InputSynapses = new List<Synapse>();
+        OutputSynapses = new List<Synapse>();
+        for (int i = 0; i < _previousLayer.Count; i++)
+        {
+            Synapse _s = new Synapse(_previousLayer[i], this, _weights[i]);
+            _previousLayer[i].OutputSynapses.Add(_s);
+            InputSynapses.Add(_s);
+        }
+    }
+    public HiddenNeuron(List<HiddenNeuron> _previousLayer, float[] _weights)
+    {
+        Bias = 0;
+        InputSynapses = new List<Synapse>();
+        OutputSynapses = new List<Synapse>();
+        for (int i = 0; i < _previousLayer.Count; i++)
+        {
+            Synapse _s = new Synapse(_previousLayer[i], this, _weights[i]);
+            _previousLayer[i].OutputSynapses.Add(_s);
+            InputSynapses.Add(_s);
+        }
+    }
     #endregion
 
     #region Methods
