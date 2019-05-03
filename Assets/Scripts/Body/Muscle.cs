@@ -55,7 +55,7 @@ public class Muscle : BodyPart
 
     #region Original Methods
     /// <summary>
-    /// 
+    /// Scale force and apply it on each bone related to this muscle
     /// </summary>
     /// <param name="_force"></param>
     /// <param name="_startingForce"></param>
@@ -141,7 +141,7 @@ public class Muscle : BodyPart
         CurrentForce = Mathf.Max(0.01f, Mathf.Min(muscleForceMax, _percent * muscleForceMax));
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         base.Reset();
         CurrentForce = 0; 
@@ -156,7 +156,6 @@ public class Muscle : BodyPart
         ConnectToBones();
     }
 
-
     // Use this for initialization
     protected override void Start()
     {
@@ -167,6 +166,7 @@ public class Muscle : BodyPart
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (!IsAlive) return; 
         switch (MuscleAction)
         {
             case MuscleAction.Contraction:

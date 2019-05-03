@@ -52,12 +52,19 @@ public class Brain : MonoBehaviour
 
     private float fitness = 0;
     private float[] inputs = new float[7]; 
-    private float[] outputs; 
+    private float[] outputs;
+
+    public bool IsAlive { get; set; } = false; 
+
+    public float Fitness { get; private set; }
     #endregion
 
     #region Methods
 
     #region Original Methods
+    /// <summary>
+    /// Apply output from the neural network on the muscles.
+    /// </summary>
     private void ApplyOutputs()
     {
         float _percent = 0;
@@ -74,6 +81,26 @@ public class Brain : MonoBehaviour
 
             _muscle.UpdateCurrentForce(_percent); 
         }
+    }
+
+    /// <summary>
+    /// Set input into the neural network and get the output to apply them on the muscles
+    /// </summary>
+    private void FeedNeuralNetwork()
+    {
+        if (!IsAlive) return;
+        brainInputs = owner.UpdateBrainInputs();
+        inputs[0] = brainInputs.DistanceFromFloor;
+        inputs[1] = brainInputs.VelocityX;
+        inputs[2] = brainInputs.VelocityY;
+        inputs[3] = brainInputs.VelocityZ;
+        inputs[4] = brainInputs.AngularVelocity;
+        inputs[5] = brainInputs.GroundedPointsCounts;
+        inputs[6] = brainInputs.Rotation;
+
+        outputs = neuralNetwork.Compute(inputs);
+
+        ApplyOutputs();
     }
 
     /// <summary>
@@ -97,24 +124,17 @@ public class Brain : MonoBehaviour
         }
         Debug.Log("Init NN");
         neuralNetwork = new NeuralNetwork(7, 12, muscles.Length, 2);
-        string _data = neuralNetwork.ConvertNeuralNetworkIntoString();
-        File.WriteAllText(Path.Combine(ResourcesPath, owner.name)+".txt", _data); 
     }
 
-    private void FeedNeuralNetwork()
+    public void SaveNeuralNetwork()
     {
-        brainInputs = owner.UpdateBrainInputs();
-        inputs[0] = brainInputs.DistanceFromFloor; 
-        inputs[1] = brainInputs.VelocityX;
-        inputs[2] = brainInputs.VelocityY;
-        inputs[3] = brainInputs.VelocityZ;
-        inputs[4] = brainInputs.AngularVelocity;
-        inputs[5] = brainInputs.GroundedPointsCounts;
-        inputs[6] = brainInputs.Rotation;
+        string _data = neuralNetwork.ConvertNeuralNetworkIntoString();
+        File.WriteAllText(Path.Combine(ResourcesPath, owner.name) + ".txt", _data);
+    }
 
-        outputs = neuralNetwork.Compute(inputs);
-
-        ApplyOutputs(); 
+    public void CalculateFitness()
+    {
+        Fitness = Mathf.Clamp(Vector3.Distance(Vector3.zero, transform.position)/GeneticManager.Instance.DistanceToTravel, 0, 1);
     }
     #endregion
 
@@ -125,17 +145,12 @@ public class Brain : MonoBehaviour
         InitNeuralNetwork(); 
     }
 
-	// Use this for initialization
-    private void Start()
-    {
-		
-    }
-	
 	// Update is called once per frame
 	private void Update()
     {
         FeedNeuralNetwork(); 
     }
+
 	#endregion
 
 	#endregion

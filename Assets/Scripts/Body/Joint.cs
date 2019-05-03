@@ -65,7 +65,7 @@ public class Joint : BodyPart
         joints.Add(_boneToConnect, _joint); 
     }
 
-    protected override void Reset()
+    public override void Reset()
     {
         base.Reset();
         body.velocity = Vector3.zero; 
@@ -78,19 +78,6 @@ public class Joint : BodyPart
     {
         base.Awake(); 
     }
-
-    // Use this for initialization
-    protected override void Start()
-    {
-        base.Start();
-        if (!body) body = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
-	}
 
     private void OnCollisionEnter(Collision collision)
     {

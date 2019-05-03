@@ -51,12 +51,26 @@ public abstract class BodyPart : MonoBehaviour
             return body;
         }
     }
+
+    protected bool isAlive = false; 
+    public bool IsAlive
+    {
+        get { return isAlive;  }
+        set
+        {
+            if (value == false)
+                body.isKinematic = true;
+            else
+                body.isKinematic = false;
+            isAlive = value; 
+        }
+    }
     #endregion
 
     #region Methods
 
     #region Original Methods
-    protected virtual void Reset()
+    public virtual void Reset()
     {
         transform.SetPositionAndRotation(initialPosition, initialRotation);
         body.velocity = Vector3.zero; 
@@ -68,6 +82,7 @@ public abstract class BodyPart : MonoBehaviour
     protected virtual void Awake()
     {
         if (!body) body = GetComponent<Rigidbody>();
+        body.isKinematic = !isAlive; 
     }
 
     // Use this for initialization
@@ -76,12 +91,6 @@ public abstract class BodyPart : MonoBehaviour
         initialPosition = transform.position;
         initialRotation = transform.rotation; 
     }
-	
-	// Update is called once per frame
-	private void Update()
-    {
-        
-	}
 	#endregion
 
 	#endregion

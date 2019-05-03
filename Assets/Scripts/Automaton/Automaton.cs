@@ -41,12 +41,47 @@ public class Automaton : MonoBehaviour
     public List<Bone> Bones;
     public List<Joint> Joints;
     public List<Muscle> Muscles;
-    public Brain Brain; 
-	#endregion
+    public Brain Brain;
 
-	#region Methods
+    [SerializeField] private bool isAlive = false; 
+    public bool IsAlive
+    {
+        get { return isAlive;  }
+        set
+        {
+            isAlive = value;
+            Bones.ForEach(b => b.IsAlive = isAlive);
+            Joints.ForEach(j => j.IsAlive = isAlive);
+            Muscles.ForEach(m => m.IsAlive = isAlive);
+            Brain.IsAlive = isAlive; 
+        }
+    }
+    #endregion
 
-	#region Original Methods
+    #region Methods
+
+    #region Original Methods
+    public void Reset()
+    {
+        IsAlive = false; 
+        Bones.ForEach(b => b.Reset());
+        Joints.ForEach(b => b.Reset());
+        Muscles.ForEach(b => b.Reset());
+    }
+
+    /// <summary>
+    /// Get brain Inputs
+    /// 
+    /// DistanceFromFloor 
+    /// VelocityX
+    /// VelocityY
+    /// VelocityZ
+    /// AngularVelocity 
+    /// GroundedPointsCounts
+    /// Rotation
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public BrainInputs UpdateBrainInputs()
     {
         float minJointY = Joints[0].transform.position.y;
@@ -110,7 +145,6 @@ public class Automaton : MonoBehaviour
             VelocityZ = velocityZ,
             AngularVelocity = angularVelZ,
             GroundedPointsCounts = jointsCountTouchingGround,
-            
             Rotation = rotationZ
         };
     }
@@ -132,7 +166,10 @@ public class Automaton : MonoBehaviour
 	// Update is called once per frame
 	private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R) && IsAlive)
+            Reset();
+        if (Input.GetKeyDown(KeyCode.Space))
+            IsAlive = true; 
 	}
 	#endregion
 
