@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 10955680}
   - component: {fileID: 10955684}
   - component: {fileID: 10955683}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 252256197}
   - component: {fileID: 252256196}
   - component: {fileID: 252256198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Muscle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 378963703}
   - component: {fileID: 378963707}
   - component: {fileID: 378963706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 395377671}
   - component: {fileID: 395377672}
   - component: {fileID: 395377673}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Muscle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 660572904}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 722528379}
   - component: {fileID: 722528378}
   - component: {fileID: 722528377}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 819649504}
   - component: {fileID: 819649503}
   - component: {fileID: 819649502}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 955297634}
   - component: {fileID: 955297633}
   - component: {fileID: 955297632}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1136,7 +1136,7 @@ GameObject:
   - component: {fileID: 1449709439}
   - component: {fileID: 1449709438}
   - component: {fileID: 1449709437}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1256,7 @@ GameObject:
   - component: {fileID: 1490360572}
   - component: {fileID: 1490360573}
   - component: {fileID: 1490360574}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1270,8 +1270,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490360571}
-  m_LocalRotation: {x: 0.12112012, y: -0.72235733, z: 0.112585455, w: 0.6714569}
-  m_LocalPosition: {x: 0.123682216, y: 0.7643098, z: -0.36484495}
+  m_LocalRotation: {x: -0.12090985, y: -0.69669276, z: -0.12090988, w: 0.69669276}
+  m_LocalPosition: {x: 0.44853115, y: 0.5471159, z: -0.3648449}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 819649501}
@@ -1283,7 +1283,7 @@ Transform:
   - {fileID: 955297631}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 18.984001, y: -94.424, z: -1.442}
+  m_LocalEulerAnglesHint: {x: -19.691, y: -90.00001, z: 0}
 --- !u!114 &1490360573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1341,7 +1341,7 @@ GameObject:
   - component: {fileID: 1771838489}
   - component: {fileID: 1771838493}
   - component: {fileID: 1771838492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -41,7 +41,7 @@ public class Muscle : BodyPart
     [SerializeField] private Bone startingBone;
     [SerializeField] private Bone endingBone;
 
-    private MuscleAction muscleAction = MuscleAction.Contraction;
+    public MuscleAction MuscleAction { get; set; }
 
     private SpringJoint muscleJoint;
 
@@ -110,7 +110,6 @@ public class Muscle : BodyPart
         Vector3 endingForce = (midPoint - _endingPosition).normalized;
         Vector3 startingForce = (midPoint - _startingPosition).normalized;
 
-        Debug.Log("Contract"); 
 
         ApplyForces(CurrentForce, startingForce, endingForce);
     }
@@ -128,6 +127,7 @@ public class Muscle : BodyPart
 
         Vector3 endingForce = (_endingPosition - midPoint).normalized;
         Vector3 startingForce = (_startingPosition - midPoint).normalized;
+
 
         ApplyForces(CurrentForce, startingForce, endingForce);
     }
@@ -165,14 +165,25 @@ public class Muscle : BodyPart
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
+        switch (MuscleAction)
+        {
+            case MuscleAction.Contraction:
+                Contract(); 
+                break;
+            case MuscleAction.Expansion:
+                Expand(); 
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnDrawGizmos()
     {
         if (!startingBone || !endingBone) return;
-        switch (muscleAction)
+        switch (MuscleAction)
         {
             case MuscleAction.Contraction:
                 Gizmos.color = Color.red; 

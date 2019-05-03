@@ -39,6 +39,7 @@ public class Joint : BodyPart
 
     #region Fields / Properties
     [SerializeField] private Dictionary<Bone, HingeJoint> joints = new Dictionary<Bone, HingeJoint>();
+    public bool IsCollidingWithGround { get; set; }
     #endregion
 
     #region Methods
@@ -90,7 +91,19 @@ public class Joint : BodyPart
     {
         
 	}
-	#endregion
 
-	#endregion
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.ToLower() == "ground")
+            IsCollidingWithGround = true; 
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag.ToLower() == "ground")
+            IsCollidingWithGround = false;
+    }
+    #endregion
+
+    #endregion
 }

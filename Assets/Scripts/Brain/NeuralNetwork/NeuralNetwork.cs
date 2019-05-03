@@ -195,14 +195,6 @@ public class NeuralNetwork
 
     public string ConvertNeuralNetworkIntoString()
     {
-        /*
-         * InputSize#NbreHidden#OutputSize
-         * INFOS1
-         * INFOS2
-         * INFOS3
-         * ...
-        */
-
         string _infos = string.Empty;
         _infos += $"{InputLayer.Count}#{HiddenLayers.Count}#{OutputLayer.Count}\n";
         for (int i = 0; i < HiddenLayers.Count; i++)
